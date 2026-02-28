@@ -1,98 +1,198 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🥫 Gerenciador de Dispensa
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Sistema backend para gerenciamento de despensa doméstica e listas de compras.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+O objetivo da aplicação é permitir que o dono da casa (admin) gerencie os itens da despensa e que, quando um item acabar, uma nova lista de compras possa ser criada automaticamente contendo o item zerado.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# 🏗 Arquitetura
 
-## Project setup
+O projeto segue princípios de:
 
-```bash
-$ npm install
-```
+- Clean Architecture
+- Separação por módulos
+- Domain-Driven Design (estrutura orientada a domínio)
+- TDD (Test Driven Development)
+- NestJS como framework principal
+- Prisma como ORM
+- PostgreSQL como banco de dados
 
-## Compile and run the project
+Estrutura principal:
 
-```bash
-# development
-$ npm run start
+src/
+ ├── core/        → Configurações globais, providers e utilitários
+ └── modules/     → Módulos de negócio (ex: pantry)
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+# 🧠 Domínio da Aplicação
 
-## Run tests
+## Conceitos principais
 
-```bash
-# unit tests
-$ npm run test
+- User → Admin ou convidado
+- Household → Casa
+- Category → Categoria de item (ex: grãos, bebidas, limpeza)
+- PantryItem → Item da despensa
+- ShoppingList → Lista de compras
+- ShoppingListItem → Item dentro de uma lista
 
-# e2e tests
-$ npm run test:e2e
+---
 
-# test coverage
-$ npm run test:cov
-```
+# ✅ Status Atual do Projeto
 
-## Deployment
+## ✔ Infraestrutura Base
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+- [x] NestJS configurado
+- [x] Prisma configurado
+- [x] PostgreSQL via Docker
+- [x] Primeira migration criada
+- [x] Prisma Client gerado
+- [x] Configuração de variáveis de ambiente
+- [x] Estrutura base de Clean Architecture
+- [x] Módulo `core` estruturado
+- [x] Sistema de tratamento de erros global
+- [x] Provider de criptografia (bcrypt)
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+---
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+## ✔ Banco de Dados (Prisma)
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Models já existentes no Prisma:
 
-## Resources
+- [x] User
+- [x] Household
+- [x] Category
+- [x] PantryItem
+- [x] ShoppingList
+- [x] ShoppingListItem
 
-Check out a few resources that may come in handy when working with NestJS:
+Migration inicial criada com sucesso.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+---
 
-## Support
+## ✔ Módulo Pantry
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Estrutura criada:
 
-## Stay in touch
+modules/pantry
+ ├── application/
+ ├── domain/
+ │   ├── entities/
+ │   │   └── pantry-item.entity.ts
+ │   └── repository/
+ │       └── pantry-item.repository.ts
+ └── infrastructure/
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Implementado:
 
-## License
+- [x] Entidade `PantryItem`
+- [x] Interface `PantryItemRepository`
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Ainda não implementado:
+
+- [ ] UseCases
+- [ ] InMemoryRepository
+- [ ] PrismaRepository
+- [ ] Mappers
+- [ ] Controllers
+- [ ] DTOs
+- [ ] Testes unitários
+- [ ] Testes de integração do módulo
+
+---
+
+# 🚧 O Que Ainda Precisa Ser Implementado
+
+## 🔹 Camada Application (Pantry)
+
+- [ ] CreatePantryItemUseCase
+- [ ] UpdatePantryQuantityUseCase
+- [ ] DeletePantryItemUseCase
+- [ ] ListPantryItemsByHouseholdUseCase
+- [ ] Regra: quando quantidade zerar → iniciar lista de compras
+- [ ] Testes unitários com InMemoryRepository (TDD)
+
+---
+
+## 🔹 Camada Infrastructure (Pantry)
+
+- [ ] PrismaPantryItemRepository
+- [ ] PrismaPantryItemMapper
+- [ ] Controllers HTTP
+- [ ] DTOs de entrada e saída
+- [ ] ViewModels
+
+---
+
+## 🔹 Módulo ShoppingList
+
+Ainda não iniciado:
+
+- [ ] Estrutura do módulo
+- [ ] Entidade de domínio
+- [ ] Repository interface
+- [ ] UseCases
+- [ ] Regra de criação automática ao zerar item
+- [ ] Implementação Prisma
+- [ ] Testes unitários
+
+---
+
+## 🔹 Módulo Users / Household
+
+- [ ] Estruturar módulo Users
+- [ ] Permitir criação de convidados
+- [ ] Relacionar usuários à Household
+- [ ] Definir papéis (Admin / Guest)
+
+---
+
+# 🧪 Estratégia de Testes
+
+O projeto seguirá TDD para:
+
+- UseCases
+- Regras de negócio
+- Fluxos críticos (ex: zerar item → gerar lista)
+
+Não serão testados:
+
+- Prisma diretamente
+- Decorators do Nest
+- DTOs simples
+
+Plano:
+
+- [ ] Criar InMemoryRepository para Pantry
+- [ ] Criar testes unitários dos primeiros UseCases
+- [ ] Estruturar padrão de testes reutilizável
+
+---
+
+# 🎯 Roadmap Técnico Prioritário
+
+Ordem recomendada de desenvolvimento:
+
+1. Implementar InMemoryPantryRepository
+2. Criar primeiro UseCase com TDD (CreatePantryItem)
+3. Implementar UpdateQuantity com regra de disparo
+4. Criar módulo ShoppingList
+5. Integrar regra de reposição
+6. Implementar PrismaRepository
+7. Criar controllers
+8. Criar testes e2e reais
+
+---
+
+# 🚀 Objetivo Final
+
+Ter um backend:
+
+- Totalmente desacoplado do ORM
+- Testável sem banco
+- Com regras de negócio isoladas
+- Modular
+- Pronto para evoluir (ex: notificações, app mobile, etc.)
+
+---
