@@ -20,10 +20,12 @@ O projeto segue princípios de:
 
 Estrutura principal:
 
+
+```
 src/
  ├── core/        → Configurações globais, providers e utilitários
  └── modules/     → Módulos de negócio (ex: pantry)
-
+```
 ---
 
 # 🧠 Domínio da Aplicação
@@ -74,7 +76,7 @@ Migration inicial criada com sucesso.
 ## ✔ Módulo Pantry
 
 Estrutura criada:
-
+```
 modules/pantry
  ├── application/
  ├── domain/
@@ -83,6 +85,8 @@ modules/pantry
  │   └── repository/
  │       └── pantry-item.repository.ts
  └── infrastructure/
+
+ ```
 
 Implementado:
 
